@@ -1,4 +1,5 @@
 import { Container } from './styles.js';
+import { Button } from '../../components/Button';
 
 export function DishDetails(){
 
@@ -6,7 +7,7 @@ export function DishDetails(){
   <Container>
     <h1>Olá, mundo!</h1>
     <span>Bora codar!</span>
-    <button>Botão</button>
+    <Button title="Incluir - valor"/>
   </Container>
   )
 }

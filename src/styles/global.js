@@ -31,9 +31,14 @@ export default createGlobalStyle`
         filter: brightness(.9);
     }
 
-    body, button, input, textarea{
-        font-family: 'Poppins', sans-serif;
+    body, input, textarea{
+        font-family: 'Roboto', serif;
+        font-weight: 400;
         font-size: 1.6rem;
         outline: none;
+    }
+    button{
+        font-family: 'Poppins', sans-serif;        font-weight: 500;
+        font-size: 1.4rem;
     }
 `
