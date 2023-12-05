@@ -24,10 +24,10 @@ export default createGlobalStyle`
 
     button, a{
         cursor: pointer;
-        transition: filter .3s;
+        transition: all .3s;
     }
 
-    button:hover, a:hover{
+    a:hover{
         filter: brightness(.9);
     }
 
