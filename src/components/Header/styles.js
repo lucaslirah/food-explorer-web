@@ -6,11 +6,14 @@ export const Container = styled.header`
     width: 100%;
     
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    place-items: initial;
+    
+    gap: 3.2rem;
     
     border: none;
-    padding: 2.4rem 12rem;
+    padding: 3rem;
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
 
     button{
@@ -21,8 +24,13 @@ export const Container = styled.header`
         width: 19rem;
     }
 
-    >svg{
+    div{
+        display: flex;
+        align-items: center;
+
+        >svg{
         width: 3.2rem;
         height: 3.2rem;
+    }
     }
 `;
