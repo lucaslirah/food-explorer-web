@@ -9,6 +9,7 @@ export default {
         TINTS_TOMATO_400: "#AB4D55",
 
         LIGHT_100: "#FFFFFF",
+        LIGHT_200: "#FFFAF1",
         LIGHT_500: "#7C7C8A",
         LIGHT_400: "#C4C4CC",
     }
