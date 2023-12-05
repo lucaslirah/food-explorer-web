@@ -13,7 +13,7 @@ export const Container = styled.header`
     gap: 3.2rem;
     
     border: none;
-    padding: 3rem;
+    padding: 3rem 12rem;
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
 
     button{

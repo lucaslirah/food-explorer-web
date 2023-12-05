@@ -8,7 +8,7 @@ export function Header(){
     return(
         <Container>
             <div>
-                <img src="/src/assets/logo-food-explorer.png"/>
+                <img src="/src/assets/logo-food-explorer.svg"/>
             </div>
 
             <Input placeholder="Busque por pratos ou ingredientes" icon={FiSearch}/>
