@@ -41,6 +41,8 @@ export const DishInfo = styled.section`
             justify-content: flex-start;
             gap: 2rem;
 
+            margin-top: 4rem;
+
             button{
                 width: fit-content;
             }
@@ -49,6 +51,11 @@ export const DishInfo = styled.section`
                 background-color: transparent;
                 color: ${({ theme }) => theme.COLORS.LIGHT_100};
             }
+        }
+
+        .tags{
+            display: flex;
+            flex-wrap: wrap;
         }
 
         h1{

@@ -3,6 +3,7 @@ import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { ButtonText } from '../../components/ButtonText';
+import { Tag } from '../../components/Tag';
 import { PiMinus, PiPlus } from 'react-icons/pi'
 import { useState } from 'react';
 
@@ -62,6 +63,12 @@ export function DishDetails(){
           <p>
             Massa fresca com camarões e pesto. 
           </p>
+
+          <div className='tags'>
+            <Tag title='spaguetti'/>
+            <Tag title='camarão'/>
+            <Tag title='pimenta calabresa'/>
+          </div>
 
           <div className='order_control'>
               <button className='control'>
