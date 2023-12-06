@@ -7,16 +7,39 @@ import { PiMinus, PiPlus } from 'react-icons/pi'
 import { useState } from 'react';
 
 export function DishDetails(){
-  const [useNum, setNum] = useState(0);
+  const [order, setOrder] = useState('00');
 
-  function plus(){
-    setNum(useNum + 1)
-  }
-  function sub(){
-    if(useNum > 0){
-      setNum(useNum - 1)
+  function increase(){
+    let orderNumber;
+
+    if(order < '10'){
+      orderNumber = Number(order) + 1;
+
+      let orderString = orderNumber.toString().padStart(2, '0');
+    
+      setOrder(orderString);
+      return
     }
-    return
+    orderNumber = Number(order) + 1;
+    setOrder(orderNumber);
+  }
+
+  function decrease(){
+    let orderNumber;
+
+    if(order > 0 && order <= 10){
+      orderNumber = Number(order) - 1;
+
+      let orderString = orderNumber.toString().padStart(2, '0');
+      
+      setOrder(orderString);
+    }else if(order > 10){
+      orderNumber = Number(order) - 1;
+
+      setOrder(orderNumber);
+    }else{
+      return
+    }
   }
 
   return(
@@ -42,11 +65,11 @@ export function DishDetails(){
 
           <div className='order_control'>
               <button className='control'>
-                <PiMinus onClick={sub}/>
+                <PiMinus onClick={decrease}/>
               </button>
-              <span>{useNum}</span>
+              <span>{order}</span>
               <button className='control'>
-                <PiPlus onClick={plus}/>
+                <PiPlus onClick={increase}/>
               </button>
 
             <Button title="Incluir - R$ valor"/>
