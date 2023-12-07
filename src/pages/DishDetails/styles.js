@@ -51,6 +51,12 @@ export const DishInfo = styled.section`
                 background-color: transparent;
                 color: ${({ theme }) => theme.COLORS.LIGHT_100};
             }
+            span{
+                font-family: 'Roboto', sans-serif;
+                font-size: 2rem;
+                font-weight: 700;
+                color: ${({ theme }) => theme.COLORS.LIGHT_300};
+            }
         }
 
         .tags{
