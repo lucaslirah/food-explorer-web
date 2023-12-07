@@ -16,8 +16,8 @@ export const Container = styled.header`
     padding: 3rem 12rem;
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
 
-    >img{
-        width: 19rem;
+    div{   
+        align-self: center;
     }
 `;
 
