@@ -16,21 +16,21 @@ export const Container = styled.header`
     padding: 3rem 12rem;
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
 
-    button{
-        width: 21rem;
-    }
-
     >img{
         width: 19rem;
     }
+`;
 
-    div{
+export const SignOut = styled.button`
         display: flex;
         align-items: center;
+
+        border: none;
+        background: none;
+        color: white;
 
         >svg{
         width: 3.2rem;
         height: 3.2rem;
-    }
-    }
+        }
 `;

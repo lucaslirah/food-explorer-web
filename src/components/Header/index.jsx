@@ -1,6 +1,6 @@
 import { Button } from "../Button";
 import { Input } from "../Input";
-import { Container } from "./styles";
+import { Container, SignOut } from "./styles";
 import { PiReceipt, PiSignOut } from "react-icons/pi";
 import { FiSearch } from "react-icons/fi";
 
@@ -15,9 +15,9 @@ export function Header(){
 
             <Button title="Pedidos(n)" icon={PiReceipt}/>
 
-            <div>
+            <SignOut>
                 <PiSignOut/>
-            </div>
+            </SignOut>
         </Container>
     );
 }
