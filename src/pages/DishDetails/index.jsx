@@ -4,7 +4,7 @@ import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { ButtonText } from '../../components/ButtonText';
 import { Tag } from '../../components/Tag';
-import { PiMinus, PiPlus } from 'react-icons/pi'
+import { PiMinus, PiPlus } from 'react-icons/pi';
 import { useState } from 'react';
 
 export function DishDetails(){

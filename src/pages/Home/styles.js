@@ -41,7 +41,7 @@ export const Banner = styled.div`
         filter: opacity(.8);
     }
 
-    .rec-banner{
+    .rec_banner{
         width: 94%;
         height: 200px;
 
