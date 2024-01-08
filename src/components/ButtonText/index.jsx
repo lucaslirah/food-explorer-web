@@ -1,10 +1,9 @@
 import { Container } from "./styles";
-import { PiCaretLeft } from "react-icons/pi";
 
-export function ButtonText({ title }){
+export function ButtonText({ Icon:Icon, title }){
     return(
         <Container>
-            <PiCaretLeft/>
+            {Icon && <Icon/>}
             {title}
         </Container>
     )

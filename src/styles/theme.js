@@ -5,6 +5,7 @@ export default {
         DARK_300: "#000204",
         DARK_400: "#000A0F",
         DARK_600: "#00111A",
+        DARK_700: "#001119",
         DARK_900: "#0D1D25",
 
         GRADIENTS_200: "linear-gradient(180deg, #091E26 0%, #00131C 100%)",

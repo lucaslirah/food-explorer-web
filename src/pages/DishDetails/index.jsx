@@ -4,8 +4,9 @@ import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { ButtonText } from '../../components/ButtonText';
 import { Tag } from '../../components/Tag';
-import { PiMinus, PiPlus } from 'react-icons/pi';
+import { PiMinus, PiPlus, PiCaretLeft } from 'react-icons/pi';
 import { useState } from 'react';
+
 
 export function DishDetails(){
   const [order, setOrder] = useState('00');
@@ -48,7 +49,7 @@ export function DishDetails(){
     <Header/>
 
     <main>
-      <ButtonText title="voltar"/>
+      <ButtonText Icon={PiCaretLeft} title="voltar"/>
 
       <DishInfo>
         <img
