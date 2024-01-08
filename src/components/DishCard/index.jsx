@@ -1,10 +1,10 @@
 import { Container } from './styles';
 import { Button } from '../Button';
-import { PiMinus, PiPlus } from 'react-icons/pi';
+import { PiMinus, PiPlus, PiHeartStraight } from 'react-icons/pi';
 import { useState } from 'react';
 
 export function DishCard({ data, ...rest }){
-    const [order, setOrder] = useState('00');
+    const [order, setOrder] = useState('01');
 
     function increase(){
       let orderNumber;
@@ -39,23 +39,24 @@ export function DishCard({ data, ...rest }){
       }
     }
     return(
-        <Container {...rest}>
-            <img src={data.picture}/>
-            <h1>{data.name} &gt;</h1>
-            <p className='description'>{data.description}</p>
-            <p className='price'>R$ {data.price}</p>
+        data && <Container {...rest}>
+          <PiHeartStraight size={24}/>
+          <img src={data.picture}/>
+          <h1>{data.name} &gt;</h1>
+          <p className='description'>{data.description}</p>
+          <p className='price'>R$ {data.price}</p>
 
-            <div className='order_control'>
-              <button className='control'>
-                <PiMinus onClick={decrease}/>
-              </button>
-              <span>{order}</span>
-              <button className='control'>
-                <PiPlus onClick={increase}/>
-              </button>
+          <div className='order_control'>
+            <button className='control'>
+              <PiMinus onClick={decrease}/>
+            </button>
+            <span>{order}</span>
+            <button className='control'>
+              <PiPlus onClick={increase}/>
+            </button>
 
-            <Button title="Incluir"/>
-          </div>
+          <Button title="Incluir"/>
+        </div>
         </Container>
     )
 }

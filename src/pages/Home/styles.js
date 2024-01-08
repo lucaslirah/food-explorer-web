@@ -19,6 +19,43 @@ export const Container = styled.div`
             width: 100px;
             display: block;
         }
+
+        .swiper {
+            width: 1200px;
+            height: fit-content;
+
+            position: relative;
+        }
+        .slide_item{
+            margin: 0 1rem;
+        }
+        .swiper::before{
+            content: '';
+            width: 35rem;
+            height: 100%;
+            position: absolute;
+
+            z-index: 2;
+
+            background: linear-gradient(90deg, rgba(0, 10, 15, 0.27) 0%, #000A0F 100%);
+            transform: rotate(180deg);
+        }
+        .swiper::after{
+            content: '';
+            width: 35rem;
+            height: 100%;
+            position: absolute;
+
+            right: 0;
+            top: 0;
+
+            z-index: 2;
+
+            background: linear-gradient(90deg, rgba(0, 10, 15, 0.27) 0%, #000A0F 100%);
+        }
+        .swiper-button-prev::after, .swiper-button-next::after{
+            color: white;
+        }
     }
 `;
 

@@ -1,16 +1,26 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+    position: relative;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
 
+    width: 30rem;
+
     background-color: ${({ theme }) => theme.COLORS.DARK_200};
     border: 1px solid ${({ theme }) => theme.COLORS.DARK_300};
     border-radius: .8rem;
     padding: 2.4rem;
+
+    >svg{
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+    }
 
     img{
         width: 17.6rem;
