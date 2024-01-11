@@ -1,8 +1,8 @@
 import { Container } from "./styles";
 
-export function Input({ icon: Icon, title, isLogin, ...rest }){
+export function Input({ icon: Icon, title, $isLogin, ...rest }){
     return(
-        <Container isLogin={isLogin}>
+        <Container $isLogin={$isLogin}>
             <div>
                 {Icon && <Icon/>}
                 <input {...rest}/>

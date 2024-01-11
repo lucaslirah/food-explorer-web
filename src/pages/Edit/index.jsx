@@ -9,16 +9,20 @@ import { Textarea } from '../../components/Textarea';
 import { Select } from '../../components/Select';
 import { DishItem } from '../../components/DishItem';
 
+import { Link } from 'react-router-dom';
+
 export function Edit(){
     return(
         <Container>
             <Header/>
 
             <Form>
-                <ButtonText 
-                Icon={PiCaretLeft}
-                title="voltar"
-                />
+                <Link to="/">
+                    <ButtonText
+                    Icon={PiCaretLeft}
+                    title="voltar"
+                    />
+                </Link>
 
                 <h1>Editar prato</h1>
 

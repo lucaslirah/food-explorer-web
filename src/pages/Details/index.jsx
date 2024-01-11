@@ -7,6 +7,7 @@ import { Tag } from '../../components/Tag';
 import { PiMinus, PiPlus, PiCaretLeft } from 'react-icons/pi';
 import { useState } from 'react';
 
+import { Link } from "react-router-dom";
 
 export function Details(){
   const [order, setOrder] = useState('00');
@@ -49,7 +50,9 @@ export function Details(){
     <Header/>
 
     <main>
-      <ButtonText Icon={PiCaretLeft} title="voltar"/>
+      <Link to="/">
+        <ButtonText Icon={PiCaretLeft} title="voltar"/>
+      </Link>
 
       <DishInfo>
         <img

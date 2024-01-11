@@ -37,10 +37,10 @@ export const Form = styled.form`
         word-wrap: break-word
     }
 
-    h1, button:nth-child(odd){
+    h1, a{
         align-self: center;
     }
-    button:nth-child(odd){
+    a button{
         font-size: 1.4rem;
         font-weight: 500;
     }

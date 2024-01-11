@@ -20,7 +20,7 @@ export const Container = styled.div`
         
         border-radius: .5rem;
         padding: 1.2rem;
-        border: ${({ theme, isLogin }) => isLogin ? `1px solid ${theme.COLORS.LIGHT_100}` : "none"};
+        border: ${({ theme, $isLogin }) => $isLogin ? `1px solid ${theme.COLORS.LIGHT_100}` : "none"};
         
         >input{
             width: 100%;

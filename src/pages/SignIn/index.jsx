@@ -3,6 +3,8 @@ import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { ButtonText } from '../../components/ButtonText';
 
+import { Link } from 'react-router-dom';
+
 export function SignIn(){
     return(
         <Container>
@@ -19,7 +21,7 @@ export function SignIn(){
                     <Input
                         id="email"
                         placeholder="Exemplo: exemplo@exemplo.com.br"
-                        isLogin
+                        $isLogin
                     />
                 </label>
 
@@ -28,7 +30,7 @@ export function SignIn(){
                     <Input
                         type="password"
                         placeholder="No mínimo 6 caracteres"
-                        isLogin
+                        $isLogin
                     />
                 </label>
 
@@ -36,7 +38,9 @@ export function SignIn(){
                     title="Entrar"
                 />
 
-                <ButtonText title="Criar uma conta"/>
+                <Link to='/register'>
+                    <ButtonText title="Criar uma conta"/>
+                </Link>
             </Form>
         </Container>
     )
