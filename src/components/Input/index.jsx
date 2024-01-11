@@ -1,12 +1,12 @@
 import { Container } from "./styles";
 
-export function Input({ icon: Icon, label, isLogin, ...rest }){
+export function Input({ icon: Icon, title, isLogin, ...rest }){
     return(
         <Container isLogin={isLogin}>
-            <h2>{label}</h2>
             <div>
                 {Icon && <Icon/>}
                 <input {...rest}/>
+                <h2>{title}</h2>
             </div>
         </Container>
     )

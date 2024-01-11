@@ -44,4 +44,15 @@ export const Form = styled.form`
         font-size: 1.4rem;
         font-weight: 500;
     }
+
+    label span{
+        margin-bottom: .8rem;
+        display: block;
+
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
+        font-size: 1.6rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        line-height: 1.6rem;
+    }
 `;

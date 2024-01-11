@@ -1,20 +1,19 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+    width: 100%;
+    
     h2{
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
         font-size: 1.6rem;
         font-family: 'Roboto', sans-serif;
         font-weight: 400;
         line-height: 1.6rem;
-
-        margin-bottom: .8rem;
-    }
+     }
     >div{
         width: 100%;
         display: flex;
         align-items: center;
-        
 
         background-color: ${({ theme }) => theme.COLORS.DARK_900};
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
@@ -38,6 +37,7 @@ export const Container = styled.div`
         >svg{
             margin: 0 1.4rem;
             color: ${({ theme }) => theme.COLORS.LIGHT_400};
+            font-size: 2rem;
         }
     }
 `
