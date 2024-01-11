@@ -6,10 +6,19 @@ export const Container = styled.div`
         flex-direction: column;
         justify-content: space-between;
         flex-wrap: wrap;
-
         gap: 1rem;
 
         margin-bottom: 3.2rem;
+
+        input{
+            &::placeholder{
+                color: ${({ theme }) => theme.COLORS.LIGHT_500};
+            }
+        }
+        span{
+            margin-bottom: 1.6rem;
+            display: block;
+        }
     }
 
     .inputs_item_1{
@@ -40,22 +49,11 @@ export const Container = styled.div`
     .item_5{
         min-width: 25rem;
     }
-
-    .inputs{
-        input{
-            &::placeholder{
-                color: ${({ theme }) => theme.COLORS.LIGHT_500};
-            }
-        }
-        span{
-            margin-bottom: 1.6rem;
-            display: block;
-        }
-    }
-
 `;
 
 export const Form = styled.form`
+    display: flex;
+    flex-direction: column;
     padding: 4rem 12rem;
 
     h1{
@@ -71,6 +69,11 @@ export const Form = styled.form`
         display: flex;
         flex-wrap: wrap;
         gap: 1rem;
+    }
+
+    button:nth-child(4){
+            background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_400};
+            align-self: end;
     }
 `;
 

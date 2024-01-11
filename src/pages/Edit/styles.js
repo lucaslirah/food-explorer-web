@@ -10,9 +10,7 @@ export const Container = styled.div`
         gap: 1rem;
 
         margin-bottom: 3.2rem;
-    }
 
-    .inputs{
         input{
             &::placeholder{
                 color: ${({ theme }) => theme.COLORS.LIGHT_500};
@@ -24,6 +22,34 @@ export const Container = styled.div`
         }
     }
 
+    .inputs_item_1{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+    .inputs_item_2{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .item_1{
+        min-width: 22rem;
+    }
+    .item_2{
+        width: 100%;
+    }
+    .item_3{
+        width: 36rem;
+    }
+    .item_4{
+        width: 100%;
+    }
+    .item_5{
+        min-width: 25rem;
+    }
 `;
 
 export const Form = styled.form`
@@ -51,6 +77,9 @@ export const Form = styled.form`
 
         button:nth-child(1){
             background-color: ${({ theme }) => theme.COLORS.DARK_800};
+        }
+        button:nth-child(2){
+            background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_400};
         }
     }
 `;
