@@ -4,7 +4,11 @@ import { Container, SignOut } from "./styles";
 import { PiReceipt, PiSignOut } from "react-icons/pi";
 import { FiSearch } from "react-icons/fi";
 
+import { useAuth } from '../../hooks/auth';
+
 export function Header(){
+    const { signOut } = useAuth();
+
     return(
         <Container>
             <div>
@@ -15,7 +19,7 @@ export function Header(){
 
             <Button title="Pedidos(n)" icon={PiReceipt}/>
 
-            <SignOut>
+            <SignOut onClick={signOut}>
                 <PiSignOut/>
             </SignOut>
         </Container>
