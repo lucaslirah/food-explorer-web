@@ -9,7 +9,7 @@ import { Textarea } from '../../components/Textarea';
 import { Select } from '../../components/Select';
 import { DishItem } from '../../components/DishItem';
 
-export function DishEdit(){
+export function Edit(){
     return(
         <Container>
             <Header/>

@@ -8,7 +8,7 @@ import { PiMinus, PiPlus, PiCaretLeft } from 'react-icons/pi';
 import { useState } from 'react';
 
 
-export function DishDetails(){
+export function Details(){
   const [order, setOrder] = useState('00');
 
   function increase(){
