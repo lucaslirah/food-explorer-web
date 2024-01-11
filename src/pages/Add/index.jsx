@@ -75,10 +75,6 @@ export function Add(){
                                     />
                                     <DishItem
                                         className="dish_ingredients"
-                                        value="Pão Naan"
-                                    />
-                                    <DishItem
-                                        className="dish_ingredients"
                                         placeholder="Adicionar"
                                         $isNew
                                     />

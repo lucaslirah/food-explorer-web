@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const Container = styled.div`
     width: 100%;
     
-    h2{
+    p{
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
-        font-size: 1.6rem;
-        font-family: 'Roboto', sans-serif;
-        font-weight: 400;
-        line-height: 1.6rem;
+        font-size: 1.4rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        line-height: 2.4rem;
      }
     >div{
         width: 100%;

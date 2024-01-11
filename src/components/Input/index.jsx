@@ -6,7 +6,7 @@ export function Input({ icon: Icon, title, $isLogin, ...rest }){
             <div>
                 {Icon && <Icon/>}
                 <input {...rest}/>
-                <h2>{title}</h2>
+                <p>{title}</p>
             </div>
         </Container>
     )

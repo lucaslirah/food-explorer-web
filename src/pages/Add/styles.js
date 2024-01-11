@@ -12,6 +12,35 @@ export const Container = styled.div`
         margin-bottom: 3.2rem;
     }
 
+    .inputs_item_1{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+    .inputs_item_2{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .item_1{
+        min-width: 22rem;
+    }
+    .item_2{
+        width: 100%;
+    }
+    .item_3{
+        width: 36rem;
+    }
+    .item_4{
+        width: 100%;
+    }
+    .item_5{
+        min-width: 25rem;
+    }
+
     .inputs{
         input{
             &::placeholder{
