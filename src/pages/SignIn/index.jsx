@@ -5,7 +5,13 @@ import { ButtonText } from '../../components/ButtonText';
 
 import { Link } from 'react-router-dom';
 
+import { useAuth } from '../../hooks/auth'
+
 export function SignIn(){
+
+    const data = useAuth();
+    console.log("meu contexto =>", data);
+
     return(
         <Container>
             <div>
