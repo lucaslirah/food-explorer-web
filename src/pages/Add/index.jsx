@@ -1,20 +1,32 @@
 import { useState } from 'react';
+import { PiCaretLeft, PiUploadSimple } from 'react-icons/pi';
 import { Container, Form, Picture, Inputs } from './styles';
+import { ButtonText } from '../../components/ButtonText';
+import { Textarea } from '../../components/Textarea';
+import { DishItem } from '../../components/DishItem';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { Button } from '../../components/Button';
-import { ButtonText } from '../../components/ButtonText';
-import { Input } from '../../components/Input';
-import { PiCaretLeft, PiUploadSimple } from 'react-icons/pi';
-import { Textarea } from '../../components/Textarea';
 import { Select } from '../../components/Select';
-import { DishItem } from '../../components/DishItem';
-
+import { Input } from '../../components/Input';
 import { Link } from 'react-router-dom';
 
+import { useNavigate } from 'react-router-dom';
+
+import { api } from '../../services/api';
+
 export function Add(){
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [type, SetType] = useState("");
+    const [price, SetPrice] = useState(0);
+
     const [ingredients, setIngredients] = useState([]);
     const [newIngredient, setNewIngredient] = useState("");
+
+    const [pictureFile, setPictureFile] = useState(null);
+
+    const navigate = useNavigate();
 
     function handleAddIngredients(){
         setIngredients(prevState => [...prevState, newIngredient]);
@@ -22,6 +34,43 @@ export function Add(){
     }
     function handleRemoveIngredient(deleted){
         setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted));
+    }
+    function handlePicture(event){
+        const file = event.target.files[0];
+        setPictureFile(file);
+    }
+
+    async function handleNewDish(){
+        if(!name){
+            return alert("Digite o nome do prato!");
+        }
+
+        if(newIngredient){
+            return alert("Você esqueceu de adicionar um ingrediente, clique em adicionar ou deixe o campo vazio.");
+        }
+
+        const data = new FormData();
+
+        data.append("picture", pictureFile);
+        data.append("name", name);
+        data.append("description", description);
+        data.append("price", price);
+        data.append("type", type);
+        data.append("ingredients", ingredients);
+        
+        try{
+            await api.post("/dishes/create", data, {
+                headers: {
+                    "Content-type": `multipart/form-data`,
+                },
+            });
+
+        }catch(error){
+            alert(error);
+        }
+
+        alert("Novo prato criado!");
+        navigate("/");
     }
 
     return(
@@ -48,6 +97,7 @@ export function Add(){
                                     id="dish_picture"
                                     type="file"
                                     icon={PiUploadSimple}
+                                    onChange={handlePicture}
                                 />
                             </label>
                         </Picture>
@@ -58,6 +108,7 @@ export function Add(){
                                     id="dish_name"
                                     placeholder="Ex: Salada Ceaser"
                                     type="text"
+                                    onChange={e => setName(e.target.value)}
                                 />
                             </label>
                         </div>
@@ -67,6 +118,7 @@ export function Add(){
                                 <Select
                                     id="dish_type"
                                     name="dish_type"
+                                    onChange={e => SetType(e.target.value)}
                                 >
                                     <option value="meal">Refeição</option>
                                     <option value="dessert">Sobremesa</option>
@@ -108,6 +160,7 @@ export function Add(){
                                     id="dish_price"
                                     type="number"
                                     placeholder="R$ 00,00"
+                                    onChange={e => SetPrice(e.target.value)}
                                 />
                             </label>
                         </div>
@@ -119,6 +172,7 @@ export function Add(){
                             <Textarea
                                 id="dish_description"
                                 placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+                                onChange={e => setDescription(e.target.value)}
                             />
                         </label>
                     </div>
@@ -126,6 +180,7 @@ export function Add(){
 
                 <Button
                     title="Salvar alterações"
+                    onClick={handleNewDish}
                 />
             </Form>
 
