@@ -1,40 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    .inputs{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        flex-wrap: wrap;
-
-        gap: 1rem;
-
-        margin-bottom: 3.2rem;
-
-        input{
-            &::placeholder{
-                color: ${({ theme }) => theme.COLORS.LIGHT_500};
-            }
-        }
-        span{
-            margin-bottom: 1.6rem;
-            display: block;
-        }
-    }
-
-    .inputs_item_1{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 2rem;
-    }
-    .inputs_item_2{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 2rem;
-    }
-
     .item_1{
         min-width: 22rem;
     }
@@ -94,5 +60,32 @@ export const Picture = styled.div`
     div{
         border-radius: .8rem;    
         cursor: pointer;
+    }
+`;
+
+export const Inputs = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    margin-bottom: 3.2rem;
+
+    input{
+        &::placeholder{
+            color: ${({ theme }) => theme.COLORS.LIGHT_500};
+        }
+    }
+    span{
+        margin-bottom: 1.6rem;
+        display: block;
+    }
+
+    .inputs_wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
     }
 `;

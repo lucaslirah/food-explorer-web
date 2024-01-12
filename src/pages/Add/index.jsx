@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, Form, Picture } from './styles';
+import { Container, Form, Picture, Inputs } from './styles';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { Button } from '../../components/Button';
@@ -38,8 +38,8 @@ export function Add(){
 
                 <h1>Adicionar prato</h1>
 
-                <div className="inputs">
-                    <div className="inputs_item_1">
+                <Inputs>
+                    <div className="inputs_wrapper">
                         <Picture className='item_1'>
                             <label htmlFor='dish_picture'>
                                 <span>Imagem do prato</span>
@@ -76,7 +76,7 @@ export function Add(){
                         </div>
                     </div>
 
-                    <div className="inputs_item_2">
+                    <div className="inputs_wrapper">
                         <div className="item_4">
                             <label>
                                 <span>Ingredientes</span>
@@ -122,7 +122,7 @@ export function Add(){
                             />
                         </label>
                     </div>
-                </div>
+                </Inputs>
 
                 <Button
                     title="Salvar alterações"
