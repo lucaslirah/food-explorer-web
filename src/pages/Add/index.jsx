@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Container, Form, Picture } from './styles';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
@@ -12,6 +13,17 @@ import { DishItem } from '../../components/DishItem';
 import { Link } from 'react-router-dom';
 
 export function Add(){
+    const [ingredients, setIngredients] = useState([]);
+    const [newIngredient, setNewIngredient] = useState("");
+
+    function handleAddIngredients(){
+        setIngredients(prevState => [...prevState, newIngredient]);
+        setNewIngredient("");
+    }
+    function handleRemoveIngredient(deleted){
+        setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted));
+    }
+
     return(
         <Container>
             <Header/>
@@ -69,14 +81,21 @@ export function Add(){
                             <label>
                                 <span>Ingredientes</span>
                                 <div className="ingredients">
+                                    {
+                                        ingredients.map((ingredient, index) => (
+                                            <DishItem
+                                                key={String(index)}
+                                                value={ingredient}
+                                                onClick={() => handleRemoveIngredient(ingredient)}
+                                            />
+                                        ))
+                                    }
                                     <DishItem
-                                        className="dish_ingredients"
-                                        value="Pão Naan"
-                                    />
-                                    <DishItem
-                                        className="dish_ingredients"
                                         placeholder="Adicionar"
                                         $isNew
+                                        value={newIngredient}
+                                        onChange={e => setNewIngredient(e.target.value)}
+                                        onClick={handleAddIngredients}
                                     />
                                 </div>
                             </label>
