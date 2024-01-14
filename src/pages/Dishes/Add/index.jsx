@@ -42,8 +42,8 @@ export function Add() {
   }
 
   async function handleNewDish() {
-    if (!name) {
-      return alert("Digite o nome do prato!");
+    if (!name || !description || !type || !price || ingredients.length == 0 || !pictureFile) {
+      return alert("Há campos vazios a serem preenchidos!");
     }
 
     if (newIngredient) {
