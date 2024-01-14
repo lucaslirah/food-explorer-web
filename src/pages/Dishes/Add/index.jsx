@@ -124,6 +124,7 @@ export function Add() {
                   name="dish_type"
                   onChange={(e) => setType(e.target.value)}
                 >
+                  <option value=""></option>
                   <option value="meal">Refeição</option>
                   <option value="dessert">Sobremesa</option>
                   <option value="drink">Bebida</option>
