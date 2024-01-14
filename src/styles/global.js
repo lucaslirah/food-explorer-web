@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { DEVICE_BREAKPOINTS } from './deviceBreakpoints';
 
 export default createGlobalStyle`
     * {
@@ -9,6 +10,10 @@ export default createGlobalStyle`
 
     :root{
         font-size: 65%;
+
+        @media(max-width: ${DEVICE_BREAKPOINTS.MD}){
+            font-size: 48.75%;
+        }
     }
 
     body{

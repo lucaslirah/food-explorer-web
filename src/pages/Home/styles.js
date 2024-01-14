@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
     display: grid;
@@ -117,6 +118,13 @@ export const Banner = styled.div`
                 font-weight: 400;
             }
         }
+    }
+
+    @media(max-width: ${DEVICE_BREAKPOINTS.MD}){
+        width: 60%;
+    }
+    @media(max-width: ${DEVICE_BREAKPOINTS.LG}){
+        width: 80%;
     }
 `;
 
