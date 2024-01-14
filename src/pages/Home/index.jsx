@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 
@@ -5,18 +6,37 @@ import { Container, Banner } from '../Home/styles.js';
 import { Section } from '../../components/Section';
 import { DishCard } from '../../components/DishCard';
 
-// import Swiper core and required modules
+import { useDishes } from '../../hooks/dishes.jsx';
+
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 export function Home(){
+    const { dishes, fetchDishes } = useDishes();
+
+    const [meals, setMeals] = useState([]);
+    const [desserts, setDesserts] = useState([]);
+    const [drinks, setDrinks] = useState([]);
+
+    useEffect(() => {
+        const mealsDishes = dishes.filter(dish => dish.type == "meal");
+        const dessertsDishes = dishes.filter(dish => dish.type == "dessert");
+        const drinksDishes = dishes.filter(dish => dish.type == "drink");
+
+        setMeals(mealsDishes);
+        setDesserts(dessertsDishes);
+        setDrinks(drinksDishes);
+    }, [dishes]);
+
+    useEffect(() => {
+        fetchDishes();
+    }, []);
 
     return(
         <Container>
@@ -31,7 +51,9 @@ export function Home(){
                         </div>
                         <img src='/src/assets/banner-macarons.png' className='img-banner'/>
                     </Banner>
-                    <Section
+
+                    {meals.length > 0 &&
+                        <Section
                         title='Refeições'
                     >
                     <Swiper
@@ -44,53 +66,60 @@ export function Home(){
                         <SwiperSlide className='slide_item'>
                             <DishCard/>
                         </SwiperSlide>
-                        <SwiperSlide className='slide_item'>
-                            <DishCard
-                                data={{
-                                    name: 'Spaguetti Gambe',
-                                    description: 'Massa fresca com camarões e pesto.',
-                                    picture: 'https://s3-alpha-sig.figma.com/img/3963/9111/6d672c4f830cbb8c6c5536ade350b379?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=T-xNScys16t5XplclXJlbfveJYFvsCrieyVxwMH0E~DnCxeDZuCHLyESdU1CbaRwlsxu7~sh2rrRHSx4M3Vz2~7LcJqUBMDMdppA8aQSkUhHYEhUHWS9CnJZbitiKwc0Nn4KLiagVryuY2VQu6h24rnNpseD7aLxOYFrjUMBGKD7I~LQxU8ZE7mBeUmeGp7wSBx-ApmDIqAij6aMV0IAfeCF5mV5~HoBARE4Gt8R4kT8N7cGADLZPgOtyzgxAhdVje-ZwDNu7w07LXEaojLcI0MzvPWopyKJN5Btd3frrNlviAI0GgwzjBYHR3sT1gFz1fkIkfE-keKuodz8LtDLSg__',
-                                    price: 79.97
-                                }}
-                            />
-                        </SwiperSlide>
-                        <SwiperSlide className='slide_item'>
-                            <DishCard
-                                data={{
-                                    name: 'Spaguetti Gambe',
-                                    description: 'Massa fresca com camarões e pesto.',
-                                    picture: 'https://s3-alpha-sig.figma.com/img/3963/9111/6d672c4f830cbb8c6c5536ade350b379?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=T-xNScys16t5XplclXJlbfveJYFvsCrieyVxwMH0E~DnCxeDZuCHLyESdU1CbaRwlsxu7~sh2rrRHSx4M3Vz2~7LcJqUBMDMdppA8aQSkUhHYEhUHWS9CnJZbitiKwc0Nn4KLiagVryuY2VQu6h24rnNpseD7aLxOYFrjUMBGKD7I~LQxU8ZE7mBeUmeGp7wSBx-ApmDIqAij6aMV0IAfeCF5mV5~HoBARE4Gt8R4kT8N7cGADLZPgOtyzgxAhdVje-ZwDNu7w07LXEaojLcI0MzvPWopyKJN5Btd3frrNlviAI0GgwzjBYHR3sT1gFz1fkIkfE-keKuodz8LtDLSg__',
-                                    price: 79.97
-                                }}
-                            />
-                        </SwiperSlide>
-                        <SwiperSlide className='slide_item'>
-                            <DishCard
-                                data={{
-                                    name: 'Spaguetti Gambe',
-                                    description: 'Massa fresca com camarões e pesto.',
-                                    picture: 'https://s3-alpha-sig.figma.com/img/3963/9111/6d672c4f830cbb8c6c5536ade350b379?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=T-xNScys16t5XplclXJlbfveJYFvsCrieyVxwMH0E~DnCxeDZuCHLyESdU1CbaRwlsxu7~sh2rrRHSx4M3Vz2~7LcJqUBMDMdppA8aQSkUhHYEhUHWS9CnJZbitiKwc0Nn4KLiagVryuY2VQu6h24rnNpseD7aLxOYFrjUMBGKD7I~LQxU8ZE7mBeUmeGp7wSBx-ApmDIqAij6aMV0IAfeCF5mV5~HoBARE4Gt8R4kT8N7cGADLZPgOtyzgxAhdVje-ZwDNu7w07LXEaojLcI0MzvPWopyKJN5Btd3frrNlviAI0GgwzjBYHR3sT1gFz1fkIkfE-keKuodz8LtDLSg__',
-                                    price: 79.97
-                                }}
-                            />
-                        </SwiperSlide>
-                        <SwiperSlide className='slide_item'>
-                            <DishCard
-                                data={{
-                                    name: 'Spaguetti Gambe',
-                                    description: 'Massa fresca com camarões e pesto.',
-                                    picture: 'https://s3-alpha-sig.figma.com/img/3963/9111/6d672c4f830cbb8c6c5536ade350b379?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=T-xNScys16t5XplclXJlbfveJYFvsCrieyVxwMH0E~DnCxeDZuCHLyESdU1CbaRwlsxu7~sh2rrRHSx4M3Vz2~7LcJqUBMDMdppA8aQSkUhHYEhUHWS9CnJZbitiKwc0Nn4KLiagVryuY2VQu6h24rnNpseD7aLxOYFrjUMBGKD7I~LQxU8ZE7mBeUmeGp7wSBx-ApmDIqAij6aMV0IAfeCF5mV5~HoBARE4Gt8R4kT8N7cGADLZPgOtyzgxAhdVje-ZwDNu7w07LXEaojLcI0MzvPWopyKJN5Btd3frrNlviAI0GgwzjBYHR3sT1gFz1fkIkfE-keKuodz8LtDLSg__',
-                                    price: 79.97
-                                }}
-                            />
-                        </SwiperSlide>
+                            {    
+                                meals.map(meal => (
+                                    <SwiperSlide className='slide_item'
+                                    key={String(meal.id)}
+                                    >
+                                    <DishCard
+                                        key={String(meal.id)}
+                                        data={meal}
+                                    />
+                                    </SwiperSlide>
+                                ))                    
+                            }
                         <SwiperSlide className='slide_item'>
                             <DishCard/>
                         </SwiperSlide> 
                     </Swiper>
-                    </Section>
+                        </Section>
+                    }
 
-                    <Section
+                    {desserts.length > 0 &&
+                        <Section
+                        title='Sobremesas'
+                    >
+                    <Swiper
+                        // install Swiper modules
+                        modules={[Navigation, Pagination, Scrollbar, A11y]}
+                        spaceBetween={10}
+                        slidesPerView={3.5}
+                        navigation
+                        >
+                        <SwiperSlide className='slide_item'>
+                            <DishCard/>
+                        </SwiperSlide>
+                            {    
+                                desserts.map(dessert => (
+                                    <SwiperSlide className='slide_item'
+                                    key={String(dessert.id)}
+                                    >
+                                    <DishCard
+                                        key={String(dessert.id)}
+                                        data={dessert}
+                                    />
+                                    </SwiperSlide>
+                                ))                    
+                            }
+                        <SwiperSlide className='slide_item'>
+                            <DishCard/>
+                        </SwiperSlide> 
+                    </Swiper>
+                        </Section>
+                    }
+
+                    {drinks.length > 0 &&
+                        <Section
                         title='Bebidas'
                     >
                     <Swiper
@@ -103,51 +132,26 @@ export function Home(){
                         <SwiperSlide className='slide_item'>
                             <DishCard/>
                         </SwiperSlide>
-                        <SwiperSlide className='slide_item'>
-                            <DishCard
-                                data={{
-                                    name: 'Spaguetti Gambe',
-                                    description: 'Massa fresca com camarões e pesto.',
-                                    picture: 'https://s3-alpha-sig.figma.com/img/3963/9111/6d672c4f830cbb8c6c5536ade350b379?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=T-xNScys16t5XplclXJlbfveJYFvsCrieyVxwMH0E~DnCxeDZuCHLyESdU1CbaRwlsxu7~sh2rrRHSx4M3Vz2~7LcJqUBMDMdppA8aQSkUhHYEhUHWS9CnJZbitiKwc0Nn4KLiagVryuY2VQu6h24rnNpseD7aLxOYFrjUMBGKD7I~LQxU8ZE7mBeUmeGp7wSBx-ApmDIqAij6aMV0IAfeCF5mV5~HoBARE4Gt8R4kT8N7cGADLZPgOtyzgxAhdVje-ZwDNu7w07LXEaojLcI0MzvPWopyKJN5Btd3frrNlviAI0GgwzjBYHR3sT1gFz1fkIkfE-keKuodz8LtDLSg__',
-                                    price: 79.97
-                                }}
-                            />
-                        </SwiperSlide>
-                        <SwiperSlide className='slide_item'>
-                            <DishCard
-                                data={{
-                                    name: 'Spaguetti Gambe',
-                                    description: 'Massa fresca com camarões e pesto.',
-                                    picture: 'https://s3-alpha-sig.figma.com/img/3963/9111/6d672c4f830cbb8c6c5536ade350b379?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=T-xNScys16t5XplclXJlbfveJYFvsCrieyVxwMH0E~DnCxeDZuCHLyESdU1CbaRwlsxu7~sh2rrRHSx4M3Vz2~7LcJqUBMDMdppA8aQSkUhHYEhUHWS9CnJZbitiKwc0Nn4KLiagVryuY2VQu6h24rnNpseD7aLxOYFrjUMBGKD7I~LQxU8ZE7mBeUmeGp7wSBx-ApmDIqAij6aMV0IAfeCF5mV5~HoBARE4Gt8R4kT8N7cGADLZPgOtyzgxAhdVje-ZwDNu7w07LXEaojLcI0MzvPWopyKJN5Btd3frrNlviAI0GgwzjBYHR3sT1gFz1fkIkfE-keKuodz8LtDLSg__',
-                                    price: 79.97
-                                }}
-                            />
-                        </SwiperSlide>
-                        <SwiperSlide className='slide_item'>
-                            <DishCard
-                                data={{
-                                    name: 'Spaguetti Gambe',
-                                    description: 'Massa fresca com camarões e pesto.',
-                                    picture: 'https://s3-alpha-sig.figma.com/img/3963/9111/6d672c4f830cbb8c6c5536ade350b379?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=T-xNScys16t5XplclXJlbfveJYFvsCrieyVxwMH0E~DnCxeDZuCHLyESdU1CbaRwlsxu7~sh2rrRHSx4M3Vz2~7LcJqUBMDMdppA8aQSkUhHYEhUHWS9CnJZbitiKwc0Nn4KLiagVryuY2VQu6h24rnNpseD7aLxOYFrjUMBGKD7I~LQxU8ZE7mBeUmeGp7wSBx-ApmDIqAij6aMV0IAfeCF5mV5~HoBARE4Gt8R4kT8N7cGADLZPgOtyzgxAhdVje-ZwDNu7w07LXEaojLcI0MzvPWopyKJN5Btd3frrNlviAI0GgwzjBYHR3sT1gFz1fkIkfE-keKuodz8LtDLSg__',
-                                    price: 79.97
-                                }}
-                            />
-                        </SwiperSlide>
-                        <SwiperSlide className='slide_item'>
-                            <DishCard
-                                data={{
-                                    name: 'Spaguetti Gambe',
-                                    description: 'Massa fresca com camarões e pesto.',
-                                    picture: 'https://s3-alpha-sig.figma.com/img/3963/9111/6d672c4f830cbb8c6c5536ade350b379?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=T-xNScys16t5XplclXJlbfveJYFvsCrieyVxwMH0E~DnCxeDZuCHLyESdU1CbaRwlsxu7~sh2rrRHSx4M3Vz2~7LcJqUBMDMdppA8aQSkUhHYEhUHWS9CnJZbitiKwc0Nn4KLiagVryuY2VQu6h24rnNpseD7aLxOYFrjUMBGKD7I~LQxU8ZE7mBeUmeGp7wSBx-ApmDIqAij6aMV0IAfeCF5mV5~HoBARE4Gt8R4kT8N7cGADLZPgOtyzgxAhdVje-ZwDNu7w07LXEaojLcI0MzvPWopyKJN5Btd3frrNlviAI0GgwzjBYHR3sT1gFz1fkIkfE-keKuodz8LtDLSg__',
-                                    price: 79.97
-                                }}
-                            />
-                        </SwiperSlide>
+
+                            {    
+                                drinks.map(drink => (
+                                    <SwiperSlide className='slide_item'
+                                    key={String(drink.id)}
+                                    >
+                                    <DishCard
+                                        key={String(drink.id)}
+                                        data={drink}
+                                    />
+                                    </SwiperSlide>
+                                ))                    
+                            }
+
                         <SwiperSlide className='slide_item'>
                             <DishCard/>
                         </SwiperSlide> 
                     </Swiper>
-                    </Section>
+                        </Section>
+                    }
                 </main>
             <Footer/>
         </Container>

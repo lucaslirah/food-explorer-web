@@ -1,10 +1,15 @@
 import { Container } from './styles';
 import { Button } from '../Button';
-import { PiMinus, PiPlus, PiHeartStraight } from 'react-icons/pi';
+import { PiMinus, PiPlus, PiHeartStraight, PiPencilSimple } from 'react-icons/pi';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { api } from '../../services/api';
 
 export function DishCard({ data, ...rest }){
     const [order, setOrder] = useState('01');
+
+    const pictureUrl = `${api.defaults.baseURL}/files/${data?.picture}`;
 
     function increase(){
       let orderNumber;
@@ -41,8 +46,15 @@ export function DishCard({ data, ...rest }){
     return(
         data && <Container {...rest}>
           <PiHeartStraight size={24}/>
-          <img src={data.picture}/>
-          <h1>{data.name} &gt;</h1>
+          <Link to={`/dishes/edit/${data.id}`}>
+            <PiPencilSimple size={24}/>
+          </Link>
+
+          <Link to={`/dishes/details/${data.id}`}>
+            <img src={pictureUrl}/>
+            <h1>{data.name} &gt;</h1>
+          </Link>
+
           <p className='description'>{data.description}</p>
           <p className='price'>R$ {data.price}</p>
 

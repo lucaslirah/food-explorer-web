@@ -33,6 +33,7 @@ export const DishInfo = styled.section`
 
         >img{
             width: 39rem;
+            border-radius: 50%;
         }
 
         .order_control{
