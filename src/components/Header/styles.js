@@ -19,6 +19,25 @@ export const Container = styled.header`
     div{   
         align-self: center;
     }
+
+    button:nth-child(3){
+        width: 30rem;
+    }
+
+    .food_explorer_logo{
+        display: flex;
+        flex-direction: column;
+
+        >p{
+            color: #82F3FF;
+            font-size: 1.2rem;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            line-height: 19.20px;
+
+            align-self: flex-end;
+        }
+    }
 `;
 
 export const SignOut = styled.button`

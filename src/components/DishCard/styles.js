@@ -20,6 +20,7 @@ export const Container = styled.div`
         position: absolute;
         right: 2rem;
         top: 2rem;
+        cursor: pointer;
     }
 
     img{
@@ -52,26 +53,31 @@ export const Container = styled.div`
     }
 
     .order_control{
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 2rem;
 
-            margin-top: 4rem;
+        margin-top: 4rem;
 
-            button{
-                width: fit-content;
-            }
-            .control{
-                border: none;
-                background-color: transparent;
-                color: ${({ theme }) => theme.COLORS.LIGHT_100};
-            }
-            span{
-                font-family: 'Roboto', sans-serif;
-                font-size: 2rem;
-                font-weight: 700;
-                color: ${({ theme }) => theme.COLORS.LIGHT_300};
-            }
+        button{
+            width: fit-content;
         }
+        .control{
+            border: none;
+            background-color: transparent;
+            color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        }
+        span{
+            font-family: 'Roboto', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: ${({ theme }) => theme.COLORS.LIGHT_300};
+        }
+    }
+
+    a:nth-child(1){
+        align-self: end;
+        color: white;
+    }
 `;

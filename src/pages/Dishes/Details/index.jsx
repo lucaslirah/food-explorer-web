@@ -10,17 +10,21 @@ import { useEffect, useState } from 'react';
 
 import { api } from '../../../services/api.js';
 
+import { useAuth } from '../../../hooks/auth.jsx';
+import { USER_ROLE } from '../../../utils/roles.js';
+
 export function Details(){
-  const [order, setOrder] = useState('00');
+  const [order, setOrder] = useState('01');
   const [data, setData] = useState(null);
+  const { user } = useAuth();
 
   const navigate = useNavigate();
 
   const { id } = useParams();
 
   const pictureUrl = `${api.defaults.baseURL}/files/${data?.picture}`;
-
-    function increase(){
+    
+  function increase(){
     let orderNumber;
 
     if(order < '10'){
@@ -48,6 +52,7 @@ export function Details(){
       orderNumber = Number(order) - 1;
 
       setOrder(orderNumber);
+      setPrice(Number(price) * 2);
     }else{
       return
     }
@@ -55,6 +60,10 @@ export function Details(){
 
   function handleBack(){
     navigate("/");
+  }
+
+  function handleDishEdit(){
+    navigate(`/dishes/edit/${id}`)
   }
 
   useEffect(() => {
@@ -105,15 +114,26 @@ export function Details(){
             }
 
             <div className='order_control'>
-                <button className='control'>
-                  <PiMinus onClick={decrease}/>
-                </button>
-                <span>{order}</span>
-                <button className='control'>
-                  <PiPlus onClick={increase}/>
-                </button>
+                {
+                  user.role === USER_ROLE.CUSTOMER &&
+                  <>
+                    <button className='control'>
+                      <PiMinus onClick={decrease}/>
+                    </button>
+                    <span>{order}</span>
+                    <button className='control'>
+                      <PiPlus onClick={increase}/>
+                    </button>
 
-              <Button title="Incluir - R$ valor"/>
+                    <Button title={`Incluir R$ ${data.price}`}/>
+                  </>
+              }
+              {
+                user.role === USER_ROLE.ADMIN &&
+                <>
+                  <Button title="Editar prato" onClick={handleDishEdit}/>
+                </>
+              }
             </div>
           </div>
         </DishInfo>

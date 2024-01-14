@@ -7,9 +7,10 @@ import { useAuth } from '../../hooks/auth';
 import { FiSearch } from "react-icons/fi";
 import { Button } from "../Button";
 import { Input } from "../Input";
+import { USER_ROLE } from "../../utils/roles";
 
 export function Header(){
-    const { signOut } = useAuth();
+    const { signOut, user } = useAuth();
     const { fetchDishes } = useDishes();
 
     const navigation = useNavigate()
@@ -20,6 +21,9 @@ export function Header(){
         navigation("/");
         signOut();
     }
+    function handleNewDish(){
+        navigation("/dishes/create");
+    }
 
     useEffect(() => {
         fetchDishes(search);
@@ -27,8 +31,14 @@ export function Header(){
 
     return(
         <Container>
-            <div>
+            <div className="food_explorer_logo">
                 <img src="/src/assets/logo-food-explorer.svg"/>
+                {
+                    user.role === USER_ROLE.ADMIN &&
+                    <>
+                        <p>admin</p>
+                    </>
+                }      
             </div>
 
             <Input 
@@ -37,7 +47,18 @@ export function Header(){
             onChange={e => setSearch(e.target.value)}
             />
 
-            <Button title="Pedidos(n)" icon={PiReceipt}/>
+            {
+                user.role === USER_ROLE.CUSTOMER &&
+                <>
+                    <Button title="Pedidos(n)" icon={PiReceipt}/>
+                </>
+            }
+            {
+                user.role === USER_ROLE.ADMIN &&
+                <>
+                    <Button title="Novo prato" onClick={handleNewDish}/>
+                </>
+            }
 
             <SignOut onClick={handleSignOut}>
                 <PiSignOut/>

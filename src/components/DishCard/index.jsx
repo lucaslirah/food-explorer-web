@@ -1,15 +1,19 @@
+import { PiMinus, PiPlus, PiHeartStraight, PiPencilSimple } from 'react-icons/pi';
+import { Link } from 'react-router-dom';
 import { Container } from './styles';
 import { Button } from '../Button';
-import { PiMinus, PiPlus, PiHeartStraight, PiPencilSimple } from 'react-icons/pi';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import { api } from '../../services/api';
+import { USER_ROLE } from '../../utils/roles';
+import { useAuth } from '../../hooks/auth';
 
 export function DishCard({ data, ...rest }){
     const [order, setOrder] = useState('01');
 
     const pictureUrl = `${api.defaults.baseURL}/files/${data?.picture}`;
+
+    const { user } = useAuth();
 
     function increase(){
       let orderNumber;
@@ -45,10 +49,21 @@ export function DishCard({ data, ...rest }){
     }
     return(
         data && <Container {...rest}>
-          <PiHeartStraight size={24}/>
-          <Link to={`/dishes/edit/${data.id}`}>
-            <PiPencilSimple size={24}/>
-          </Link>
+          
+          {
+            user.role === USER_ROLE.CUSTOMER &&
+            <>
+              <PiHeartStraight size={24}/>
+            </>
+          }
+          {
+            user.role === USER_ROLE.ADMIN &&
+            <>
+              <Link to={`/dishes/edit/${data.id}`}>
+                <PiPencilSimple size={24}/>
+              </Link>
+            </>
+          }
 
           <Link to={`/dishes/details/${data.id}`}>
             <img src={pictureUrl}/>
@@ -58,17 +73,22 @@ export function DishCard({ data, ...rest }){
           <p className='description'>{data.description}</p>
           <p className='price'>R$ {data.price}</p>
 
-          <div className='order_control'>
-            <button className='control'>
-              <PiMinus onClick={decrease}/>
-            </button>
-            <span>{order}</span>
-            <button className='control'>
-              <PiPlus onClick={increase}/>
-            </button>
+          {
+            user.role === USER_ROLE.CUSTOMER &&
+            <>
+              <div className='order_control'>
+                <button className='control'>
+                  <PiMinus onClick={decrease}/>
+                </button>
+                <span>{order}</span>
+                <button className='control'>
+                  <PiPlus onClick={increase}/>
+                </button>
 
-          <Button title="Incluir"/>
-        </div>
+                <Button title="Incluir"/>
+              </div>
+            </>
+          }
         </Container>
     )
 }
