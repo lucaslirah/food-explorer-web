@@ -20,7 +20,7 @@ export function Edit(){
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [type, setType] = useState("");
-    const [price, SetPrice] = useState(0);
+    const [price, setPrice] = useState(0);
 
     const [ingredients, setIngredients] = useState([]);
     const [newIngredient, setNewIngredient] = useState([]);
@@ -48,14 +48,8 @@ export function Edit(){
         const updateConfirm = confirm("Tem certeza que deseja atualizar o prato?");
 
         if(updateConfirm){
-            if (!name) {
-                return alert("Digite o nome do prato!");
-            }
-    
-            if (newIngredient) {
-                return alert(
-                "Você esqueceu de adicionar um ingrediente, clique em adicionar ou deixe o campo vazio."
-                );
+            if (!name || !description || !type || !price || ingredients.length == 0) {
+                return alert("Há campos vazios a serem preenchidos!");
             }
     
             const data = new FormData();
@@ -63,12 +57,12 @@ export function Edit(){
             data.append("picture", pictureFile);
             data.append("name", name);
             data.append("description", description);
-            data.append("price", price);
             data.append("type", type);
+            data.append("price", price);
             data.append("ingredients", ingredients);
     
             try {
-                await api.post("/dishes/create", data, {
+                await api.put(`/dishes/edit/${id}`, data, {
                 headers: {
                     "Content-type": `multipart/form-data`,
                 },
@@ -101,6 +95,11 @@ export function Edit(){
         async function fetchDishDetails() {
             const response = await api.get(`/dishes/${id}`);
             setData(response.data);
+            setName(response.data.name);
+            setDescription(response.data.description);
+            setType(response.data.type);
+            setPrice(response.data.price);
+            setIngredients(response.data.ingredients.map(ingredient => ingredient.name));
         }
         
         fetchDishDetails();
@@ -130,6 +129,7 @@ export function Edit(){
                                         id="dish_picture"
                                         type="file"
                                         icon={PiUploadSimple}
+                                        onChange={handlePicture}
                                     />
                                 </label>
                             </Picture>
@@ -140,7 +140,8 @@ export function Edit(){
                                 <Input
                                     id="dish_name"
                                     type="text"
-                                    placeholder={data.name}
+                                    onChange={e => setName(e.target.value)}
+                                    value={name}
                                     />
                             </div>
                             <div className="item_3">
@@ -150,6 +151,7 @@ export function Edit(){
                                         id="dish_type"
                                         name="dish_type"
                                         onChange={e => setType(e.target.value)}
+                                        value={type}
                                     >
                                         <option value="meal">Refeição</option>
                                         <option value="dessert">Sobremesa</option>
@@ -164,6 +166,13 @@ export function Edit(){
                                 <label>
                                     <span>Ingredientes</span>
                                         <div className="ingredients">
+                                        {ingredients.map((ingredient, index) => (
+                                            <DishItem
+                                            key={String(index)}
+                                            value={ingredient}
+                                            onClick={() => handleRemoveIngredient(ingredient)}
+                                            />
+                                        ))}
                                             <DishItem
                                                 className="dish_ingredients"
                                                 placeholder="Adicionar"
@@ -172,13 +181,6 @@ export function Edit(){
                                                 onClick={handleAddIngredients}
                                                 $isNew
                                             />
-                                        {ingredients.map((ingredient, index) => (
-                                            <DishItem
-                                            key={String(index)}
-                                            value={ingredient}
-                                            onClick={() => handleRemoveIngredient(ingredient)}
-                                            />
-                                        ))}
                                         </div>
                                 </label>
                             </div>
@@ -189,8 +191,8 @@ export function Edit(){
                                     <Input
                                         id="dish_price"
                                         type="number"
-                                        placeholder={data.price}
-                                        onChange={e => SetPrice(e.target.value)}
+                                        value={price}
+                                        onChange={e => setPrice(e.target.value)}
                                     />
                                 </label>
                             </div>
@@ -201,8 +203,8 @@ export function Edit(){
                                 <span>Descrição</span>
                                 <Textarea
                                     id="dish_description"
-                                    placeholder={data.description}
                                     onChange={e => setDescription(e.target.value)}
+                                    defaultValue={description}
                                 />
                             </label>
                         </div>
