@@ -22,7 +22,7 @@ export const Container = styled.div`
         }
 
         .swiper {
-            width: 1200px;
+            width: 120rem;
             height: fit-content;
 
             position: relative;

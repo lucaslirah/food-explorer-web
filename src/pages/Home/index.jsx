@@ -58,7 +58,7 @@ export function Home(){
                     >
                     <Swiper
                         // install Swiper modules
-                        modules={[Navigation, Pagination, Scrollbar, A11y]}
+                        // modules={[Navigation, Pagination, Scrollbar, A11y]}
                         spaceBetween={10}
                         slidesPerView={3.5}
                         navigation
@@ -91,7 +91,7 @@ export function Home(){
                     >
                     <Swiper
                         // install Swiper modules
-                        modules={[Navigation, Pagination, Scrollbar, A11y]}
+                        // modules={[Navigation, Pagination, Scrollbar, A11y]}
                         spaceBetween={10}
                         slidesPerView={3.5}
                         navigation
@@ -124,8 +124,8 @@ export function Home(){
                     >
                     <Swiper
                         // install Swiper modules
-                        modules={[Navigation, Pagination, Scrollbar, A11y]}
-                        spaceBetween={10}
+                        // modules={[Navigation, Pagination, Scrollbar, A11y]}
+                        spaceBetween={5}
                         slidesPerView={3.5}
                         navigation
                         >
