@@ -29,6 +29,10 @@ export function Edit(){
 
     const { id } = useParams();
 
+    function handleBack(){
+        navigate("/");
+    }
+
     function handleRemoveIngredient(deleted) {
         setIngredients((prevState) =>
           prevState.filter((ingredient) => ingredient !== deleted)
@@ -109,12 +113,12 @@ export function Edit(){
             <Header/>
 
             <Form>
-                <Link to="/">
-                    <ButtonText
-                    Icon={PiCaretLeft}
-                    title="voltar"
-                    />
-                </Link>
+              <ButtonText
+                Icon={PiCaretLeft}
+                title="voltar"
+                onClick={handleBack}
+                />
+
 
                 <h1>Editar prato</h1>
 

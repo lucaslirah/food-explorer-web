@@ -9,7 +9,6 @@ import { Button } from "../../../components/Button";
 import { Select } from "../../../components/Select";
 import { Input } from "../../../components/Input";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import { api } from "../../../services/api";
@@ -26,6 +25,10 @@ export function Add() {
   const [pictureFile, setPictureFile] = useState(null);
 
   const navigate = useNavigate();
+
+  function handleBack(){
+    navigate("/");
+  }
 
   function handleAddIngredients() {
     setIngredients((prevState) => [...prevState, newIngredient]);
@@ -80,9 +83,11 @@ export function Add() {
       <Header />
 
       <Form>
-        <Link to="/">
-          <ButtonText Icon={PiCaretLeft} title="voltar" />
-        </Link>
+          <ButtonText 
+            Icon={PiCaretLeft} 
+            title="voltar" 
+            onClick={handleBack}
+          />
 
         <h1>Adicionar prato</h1>
 

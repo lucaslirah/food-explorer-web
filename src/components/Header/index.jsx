@@ -1,20 +1,25 @@
+import { PiReceipt, PiSignOut } from "react-icons/pi";
+import { useNavigate } from "react-router-dom";
+import { useDishes } from '../../hooks/dishes';
+import { Container, SignOut } from "./styles";
+import { useEffect, useState } from 'react';
+import { useAuth } from '../../hooks/auth';
+import { FiSearch } from "react-icons/fi";
 import { Button } from "../Button";
 import { Input } from "../Input";
-import { Container, SignOut } from "./styles";
-import { PiReceipt, PiSignOut } from "react-icons/pi";
-import { FiSearch } from "react-icons/fi";
-
-import { useAuth } from '../../hooks/auth';
-
-import { useEffect, useState } from 'react';
-
-import { useDishes } from '../../hooks/dishes';
 
 export function Header(){
     const { signOut } = useAuth();
     const { fetchDishes } = useDishes();
 
+    const navigation = useNavigate()
+
     const [search, setSearch] = useState("");
+
+    function handleSignOut(){
+        navigation("/");
+        signOut();
+    }
 
     useEffect(() => {
         fetchDishes(search);
@@ -34,7 +39,7 @@ export function Header(){
 
             <Button title="Pedidos(n)" icon={PiReceipt}/>
 
-            <SignOut onClick={signOut}>
+            <SignOut onClick={handleSignOut}>
                 <PiSignOut/>
             </SignOut>
         </Container>

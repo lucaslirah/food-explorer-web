@@ -3,7 +3,7 @@ import { ButtonText } from '../../../components/ButtonText';
 import { Button } from '../../../components/Button';
 import { Footer } from '../../../components/Footer';
 import { Header } from '../../../components/Header';
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Container, DishInfo } from './styles.js';
 import { Tag } from '../../../components/Tag';
 import { useEffect, useState } from 'react';
@@ -13,6 +13,8 @@ import { api } from '../../../services/api.js';
 export function Details(){
   const [order, setOrder] = useState('00');
   const [data, setData] = useState(null);
+
+  const navigate = useNavigate();
 
   const { id } = useParams();
 
@@ -51,6 +53,10 @@ export function Details(){
     }
   }
 
+  function handleBack(){
+    navigate("/");
+  }
+
   useEffect(() => {
     async function fetchDishDetails() {
         const response = await api.get(`/dishes/${id}`);
@@ -66,9 +72,11 @@ export function Details(){
 
     {data &&
       <main>
-        <Link to="/">
-          <ButtonText Icon={PiCaretLeft} title="voltar"/>
-        </Link>
+          <ButtonText 
+            Icon={PiCaretLeft} 
+            title="voltar" 
+            onClick={handleBack}
+          />
 
         <DishInfo>
           <img
