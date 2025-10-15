@@ -1,159 +1,136 @@
-import { useEffect, useState } from 'react';
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
+import { useEffect, useState } from "react";
+import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
 
-import { Container, Banner } from '../Home/styles.js';
-import { Section } from '../../components/Section';
-import { DishCard } from '../../components/DishCard';
+import { Container, Banner } from "../Home/styles.js";
+import { Section } from "../../components/Section";
+import { DishCard } from "../../components/DishCard";
 
-import { useDishes } from '../../hooks/dishes.jsx';
+import { useDishes } from "../../hooks/dishes.jsx";
 
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+import bannerMacarons from "../../assets/banner-macarons.png";
 
-export function Home(){
-    const { dishes, fetchDishes } = useDishes();
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
-    const [meals, setMeals] = useState([]);
-    const [desserts, setDesserts] = useState([]);
-    const [drinks, setDrinks] = useState([]);
+export function Home() {
+  const { dishes, fetchDishes } = useDishes();
 
-    useEffect(() => {
-        const mealsDishes = dishes.filter(dish => dish.type == "meal");
-        const dessertsDishes = dishes.filter(dish => dish.type == "dessert");
-        const drinksDishes = dishes.filter(dish => dish.type == "drink");
+  const [meals, setMeals] = useState([]);
+  const [desserts, setDesserts] = useState([]);
+  const [drinks, setDrinks] = useState([]);
 
-        setMeals(mealsDishes);
-        setDesserts(dessertsDishes);
-        setDrinks(drinksDishes);
-    }, [dishes]);
+  useEffect(() => {
+    const mealsDishes = dishes.filter((dish) => dish.type == "meal");
+    const dessertsDishes = dishes.filter((dish) => dish.type == "dessert");
+    const drinksDishes = dishes.filter((dish) => dish.type == "drink");
 
-    useEffect(() => {
-        fetchDishes();
-    }, []);
+    setMeals(mealsDishes);
+    setDesserts(dessertsDishes);
+    setDrinks(drinksDishes);
+  }, [dishes]);
 
-    return(
-        <Container>
-            <Header/>
-                <main>
-                    <Banner>
-                        <div className='rec_banner'>
-                            <div>
-                                <h1>Sabores inigualáveis</h1>
-                                <span>Sinta o cuidado do preparo com ingredientes selecionados</span>
-                            </div>
-                        </div>
-                        <img src='/src/assets/banner-macarons.png' className='img-banner'/>
-                    </Banner>
+  useEffect(() => {
+    fetchDishes();
+  }, []);
 
-                    {meals.length > 0 &&
-                        <Section
-                        title='Refeições'
-                    >
-                    <Swiper
-                        // install Swiper modules
-                        // modules={[Navigation, Pagination, Scrollbar, A11y]}
-                        spaceBetween={10}
-                        slidesPerView={3.5}
-                        navigation
-                        >
-                        <SwiperSlide className='slide_item'>
-                            <DishCard/>
-                        </SwiperSlide>
-                            {    
-                                meals.map(meal => (
-                                    <SwiperSlide className='slide_item'
-                                    key={String(meal.id)}
-                                    >
-                                    <DishCard
-                                        key={String(meal.id)}
-                                        data={meal}
-                                    />
-                                    </SwiperSlide>
-                                ))                    
-                            }
-                        <SwiperSlide className='slide_item'>
-                            <DishCard/>
-                        </SwiperSlide> 
-                    </Swiper>
-                        </Section>
-                    }
+  return (
+    <Container>
+      <Header />
+      <main>
+        <Banner>
+          <div className="rec_banner">
+            <div>
+              <h1>Sabores inigualáveis</h1>
+              <span>
+                Sinta o cuidado do preparo com ingredientes selecionados
+              </span>
+            </div>
+          </div>
+          <img src={bannerMacarons} className="img-banner" />
+        </Banner>
 
-                    {desserts.length > 0 &&
-                        <Section
-                        title='Sobremesas'
-                    >
-                    <Swiper
-                        // install Swiper modules
-                        // modules={[Navigation, Pagination, Scrollbar, A11y]}
-                        spaceBetween={10}
-                        slidesPerView={3.5}
-                        navigation
-                        >
-                        <SwiperSlide className='slide_item'>
-                            <DishCard/>
-                        </SwiperSlide>
-                            {    
-                                desserts.map(dessert => (
-                                    <SwiperSlide className='slide_item'
-                                    key={String(dessert.id)}
-                                    >
-                                    <DishCard
-                                        key={String(dessert.id)}
-                                        data={dessert}
-                                    />
-                                    </SwiperSlide>
-                                ))                    
-                            }
-                        <SwiperSlide className='slide_item'>
-                            <DishCard/>
-                        </SwiperSlide> 
-                    </Swiper>
-                        </Section>
-                    }
+        {meals.length > 0 && (
+          <Section title="Refeições">
+            <Swiper
+              // install Swiper modules
+              // modules={[Navigation, Pagination, Scrollbar, A11y]}
+              spaceBetween={10}
+              slidesPerView={3.5}
+              navigation
+            >
+              <SwiperSlide className="slide_item">
+                <DishCard />
+              </SwiperSlide>
+              {meals.map((meal) => (
+                <SwiperSlide className="slide_item" key={String(meal.id)}>
+                  <DishCard key={String(meal.id)} data={meal} />
+                </SwiperSlide>
+              ))}
+              <SwiperSlide className="slide_item">
+                <DishCard />
+              </SwiperSlide>
+            </Swiper>
+          </Section>
+        )}
 
-                    {drinks.length > 0 &&
-                        <Section
-                        title='Bebidas'
-                    >
-                    <Swiper
-                        // install Swiper modules
-                        // modules={[Navigation, Pagination, Scrollbar, A11y]}
-                        spaceBetween={5}
-                        slidesPerView={3.5}
-                        navigation
-                        >
-                        <SwiperSlide className='slide_item'>
-                            <DishCard/>
-                        </SwiperSlide>
+        {desserts.length > 0 && (
+          <Section title="Sobremesas">
+            <Swiper
+              // install Swiper modules
+              // modules={[Navigation, Pagination, Scrollbar, A11y]}
+              spaceBetween={10}
+              slidesPerView={3.5}
+              navigation
+            >
+              <SwiperSlide className="slide_item">
+                <DishCard />
+              </SwiperSlide>
+              {desserts.map((dessert) => (
+                <SwiperSlide className="slide_item" key={String(dessert.id)}>
+                  <DishCard key={String(dessert.id)} data={dessert} />
+                </SwiperSlide>
+              ))}
+              <SwiperSlide className="slide_item">
+                <DishCard />
+              </SwiperSlide>
+            </Swiper>
+          </Section>
+        )}
 
-                            {    
-                                drinks.map(drink => (
-                                    <SwiperSlide className='slide_item'
-                                    key={String(drink.id)}
-                                    >
-                                    <DishCard
-                                        key={String(drink.id)}
-                                        data={drink}
-                                    />
-                                    </SwiperSlide>
-                                ))                    
-                            }
+        {drinks.length > 0 && (
+          <Section title="Bebidas">
+            <Swiper
+              // install Swiper modules
+              // modules={[Navigation, Pagination, Scrollbar, A11y]}
+              spaceBetween={5}
+              slidesPerView={3.5}
+              navigation
+            >
+              <SwiperSlide className="slide_item">
+                <DishCard />
+              </SwiperSlide>
 
-                        <SwiperSlide className='slide_item'>
-                            <DishCard/>
-                        </SwiperSlide> 
-                    </Swiper>
-                        </Section>
-                    }
-                </main>
-            <Footer/>
-        </Container>
-    )
+              {drinks.map((drink) => (
+                <SwiperSlide className="slide_item" key={String(drink.id)}>
+                  <DishCard key={String(drink.id)} data={drink} />
+                </SwiperSlide>
+              ))}
+
+              <SwiperSlide className="slide_item">
+                <DishCard />
+              </SwiperSlide>
+            </Swiper>
+          </Section>
+        )}
+      </main>
+      <Footer />
+    </Container>
+  );
 }
